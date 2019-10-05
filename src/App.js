@@ -1,26 +1,30 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {createContext, useReducer} from 'react';
 import './App.css';
+import SomeComponent from './components/SomeComponent';
+import DumbComponent from './components/DumbComponent';
+
+export const RxJsContext = createContext();
+
+function reducer(state, action) {
+  console.log("reducer",state, action);
+  
+  return {
+    ...state,
+    [action.key]: action.value
+  }
+
+}
 
 function App() {
+  const [context, dispatch] = useReducer(reducer, {});
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <RxJsContext.Provider value={[context, dispatch]}>
+        <DumbComponent></DumbComponent>
+        <SomeComponent></SomeComponent>
+    </RxJsContext.Provider>
   );
 }
+
 
 export default App;
