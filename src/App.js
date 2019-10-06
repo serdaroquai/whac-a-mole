@@ -1,7 +1,7 @@
 import React, {createContext, useReducer} from 'react';
 import './App.css';
-import SomeComponent from './components/SomeComponent';
-import DumbComponent from './components/DumbComponent';
+import Board from './components/Board';
+import Score from "./components/Score";
 
 export const RxJsContext = createContext();
 
@@ -20,8 +20,8 @@ function App() {
   
   return (
     <RxJsContext.Provider value={[context, dispatch]}>
-        <DumbComponent></DumbComponent>
-        <SomeComponent></SomeComponent>
+      <Score></Score>
+      <Board></Board>
     </RxJsContext.Provider>
   );
 }

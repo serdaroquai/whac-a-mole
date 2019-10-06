@@ -3,6 +3,7 @@ import { RxJsContext } from '../App';
 import React, { useContext, useEffect, useRef } from 'react';
 import { fromEvent } from 'rxjs';
 
+
 export default function SomeComponent(props) {
 
     const [context, dispatch] = useContext(RxJsContext);
@@ -17,7 +18,7 @@ export default function SomeComponent(props) {
                 value: (fromEvent(bt1.current, 'click'))
             });
 
-    }, [bt1, dispatch]);
+    }, [bt1]);
 
     return (
         <button ref={bt1}>Increment</button>

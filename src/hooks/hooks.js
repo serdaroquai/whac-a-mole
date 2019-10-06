@@ -2,7 +2,7 @@ import { RxJsContext } from '../App';
 import { useContext, useState, useEffect } from 'react';
 
 export function useObservable(select, transform = obs$=>obs$, initialValue) {
-    const [context, dispatch] = useContext(RxJsContext);
+    const [context] = useContext(RxJsContext);
     const [value, setValue] = useState(initialValue);
     const obs$ = select(context);
 

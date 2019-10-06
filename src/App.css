@@ -20,3 +20,24 @@
 .App-link {
   color: #09d3ac;
 }
+
+.board-row:after {
+  clear: both;
+  content: "";
+  display: table;
+}
+
+.square {
+  background: #fff;
+  border: 1px solid #999;
+  float: left;
+  font-size: 24px;
+  font-weight: bold;
+  line-height: 54px;
+  height: 54px;
+  margin-right: -1px;
+  margin-top: -1px;
+  padding: 0;
+  text-align: center;
+  width: 54px;
+}
