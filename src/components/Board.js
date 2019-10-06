@@ -1,45 +1,46 @@
-import React, {useContext, useEffect} from "react";
+import React, { useContext, useEffect } from "react";
 import Square from "./Square";
 import { RxJsContext } from "../App";
-import { Subject, interval} from "rxjs";
+import { Subject } from "rxjs";
 import { map } from "rxjs/operators";
 
 
-const toRandom = val => Math.floor(Math.random()*9);
-export const GAME_UNIT_TIME = 1000;
+const toRandom = () => Math.floor(Math.random() * 9);
+export const GAME_UNIT_TIME = 500;
+export const GAME_LENGTH = 10;
 
 export default function Board(props) {
 
-    const [{tick$, random$, click$}, dispatch] = useContext(RxJsContext);
+    const [{ tick$ }, dispatch] = useContext(RxJsContext);
 
     // register a click$ which squares will send their click events
-    useEffect(()=> {
+    useEffect(() => {
         dispatch({
-            key:"click$",
+            key: "click$",
             value: new Subject()
         });
-    },[]);
+    }, [dispatch]);
 
     // register a tick$ 
-    useEffect(()=> {
+    useEffect(() => {
         dispatch({
-            key:"tick$",
-            value: interval(GAME_UNIT_TIME)
+            key: "tick$",
+            value: new Subject()
         });
-    },[]);
+    }, [dispatch]);
 
     // register random value generator
-    useEffect(()=> {
+    useEffect(() => {
         if (tick$) {
             const random$ = new Subject();
             const sub = map(toRandom)(tick$).subscribe(random$)
             dispatch({
-                key:"random$",
+                key: "random$",
                 value: random$
             });
             return () => sub.unsubscribe();
         }
-    },[tick$]);
+    }, [tick$, dispatch]);
 
     return (
         <div>
