@@ -1,5 +1,7 @@
 # whac-a-mole
 
+[See it live here](https://serdaroquai.github.io/whac-a-mole/)
+
 Simple whack-a-mole game implemented with [RxJs](https://rxjs-dev.firebaseapp.com/) and [React Hooks](https://en.reactjs.org/docs/hooks-overview.html). Every change in game state is derived from subscribing to an Rxjs observable and using the operators (pure functions) to 'derive' higher order events. For instance:
 
 ```javascript
